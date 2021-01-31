@@ -10,20 +10,34 @@
         <h:form>
             <p:toolbar>
                 <p:toolbarGroup>
-                    <p:commandButton icon="fa fa-fw fa-file" value="Novo"></p:commandButton>
-                    <p:commandButton icon="fa fa-fw fa-save" value="Salvar"></p:commandButton>
-                    <p:commandButton icon="fa fa-fw fa-search" value="Pesquisar"></p:commandButton>
+                    <p:commandButton icon="fa fa-fw fa-file" actionListener="#{ServicoBean.novo()}" 
+                                     update="@form" value="Novo"></p:commandButton>
+                    <p:commandButton icon="fa fa-fw fa-save" actionListener="#{ServicoBean.salvar()}" 
+                                     rendered="#{ServicoBean.status.name() != 'BUSCA'}"
+                                     update="@form" value="Salvar"></p:commandButton>
+                    <p:commandButton icon="fa fa-fw #{ServicoBean.status.name() == 'BUSCA'?'fa-search':'fa-mail-reply'} " actionListener="#{ServicoBean.buscar()}" 
+                                     rendered="#{ServicoBean.status.name() == 'BUSCA'?'Buscar':'Voltar'}"
+                                     update="@form" value="Pesquisar"></p:commandButton>
                 </p:toolbarGroup>
             </p:toolbar>
+            <p:messages>
+                <p:autoUpdate></p:autoUpdate>
+            </p:messages>
+            
+            <!-- <p:growl></p:growl> -->
             <p:spacer></p:spacer>
-            <p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
+            <p:panelGrid columns="2" styleClass="ui-panelgrid-blank" rendered="#{ServicoBean.status.name() == 'NOVO'}">
                 <h:outputLabel value="Nome"></h:outputLabel>
                 <p:inputText></p:inputText>
                 <h:outputLabel value="Valor"></h:outputLabel>
                 <p:inputText></p:inputText>
             </p:panelGrid>
             
-            <p:dataTable>
+            <p:dataTable rendered="#{ServicoBean.status.name() == 'BUSCA'}">
+                <p:column>
+                    <p:commandButton icon="fa fa-fw fa-pencil" actionListener="#{ServicoBean.editar()}" 
+                                     update="@form"></p:commandButton>
+                </p:column>
                 <p:column headerText="Nome"></p:column>
                 <p:column headerText="Valor"></p:column>
             </p:dataTable>

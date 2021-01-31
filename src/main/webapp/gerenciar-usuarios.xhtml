@@ -8,18 +8,49 @@
     
       
         <h:form>
+            <p:toolbarGroup>
+                <p:commandButton value="Salvar" actionListener="#{usuarioBean.salvar()}" update="@form"></p:commandButton>
+                <p:commandButton value="Listar" actionListener="#{usuarioBean.listar()}" update="@form"></p:commandButton>
+            </p:toolbarGroup>
             <p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
-                <h:outputLabel value="Seu nome"></h:outputLabel>
-                <p:inputText value="#{testeBean.nome}">
-                    <p:ajax event="keyup" listener="#{testeBean.dizerOla()}" update="ola"></p:ajax>
-                </p:inputText>
                 
-                <h:outputText></h:outputText>
-                <p:commandButton icon="fa fa-fw fa-comment" value="Dizer Olá" actionListener="#{testeBean.dizerOla()}" update="@form"></p:commandButton>
+                <p:outputLabel value="Nome"></p:outputLabel>
+                <p:inputText id="nomeid" value="#{usuarioBean.usuario.nome}"></p:inputText>
                 
-                <h:outputText></h:outputText>
-                <h:outputText value="#{testeBean.ola}" id="ola"></h:outputText>
+                <p:outputLabel value="Login"></p:outputLabel>
+                <p:inputText id="loginid" value="#{usuarioBean.usuario.login}"></p:inputText>
+                
+                <p:outputLabel value="Email"></p:outputLabel>
+                <p:inputText id="emailid" value="#{usuarioBean.usuario.email}"></p:inputText>
+                
+                <p:outputLabel value="Senha"></p:outputLabel>
+                <p:inputText id="senhaid" value="#{usuarioBean.usuario.senha}"></p:inputText>
+                
             </p:panelGrid>
+            
+            <p:dataTable value="#{usuarioBean.usuarios}" var="usuario">
+                <p:column headerText="ID">
+                    <h:outputText value="#{usuario.id}"></h:outputText>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{usuario.nome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Login">
+                    <h:outputText value="#{usuario.login}"></h:outputText>
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{usuario.email}"></h:outputText>
+                </p:column>
+                <p:column headerText="Data Cadastro">
+                    <h:outputText value="#{usuario.dataCadastro}"></h:outputText>
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Editar" actionListener="#{usuarioBean.editar(usuario)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Deletar" actionListener="#{usuarioBean.deletar(usuario)}" update="@form"></p:commandButton>
+                </p:column>
+                    
+            </p:dataTable>
+            
         </h:form>
 </ui:decorate>
 
