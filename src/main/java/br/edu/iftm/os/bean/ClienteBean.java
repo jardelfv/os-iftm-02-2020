@@ -31,7 +31,7 @@ public class ClienteBean extends CrudBean<Cliente, ClienteLogic>{
     }
     
     public void adicionarEndereco() {
-//        this.endereco.setCliente(getEntidade());
+        this.endereco.setCliente(getEntidade());
         getEntidade().getEnderecos().add(this.endereco);
         this.endereco = new Endereco();
     }
