@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="template.xhtml">
+    
+      
+        <h:form>
+            <p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
+                <h:outputLabel value="Seu nome"></h:outputLabel>
+                <p:inputText value="#{testeBean.nome}">
+                    <p:ajax event="keyup" listener="#{testeBean.dizerOla()}" update="ola"></p:ajax>
+                </p:inputText>
+                
+                <h:outputText></h:outputText>
+                <p:commandButton icon="fa fa-fw fa-comment" value="Dizer Olá" actionListener="#{testeBean.dizerOla()}" update="@form"></p:commandButton>
+                
+                <h:outputText></h:outputText>
+                <h:outputText value="#{testeBean.ola}" id="ola"></h:outputText>
+            </p:panelGrid>
+        </h:form>
+</ui:decorate>
+
