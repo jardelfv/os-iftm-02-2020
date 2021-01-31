@@ -13,7 +13,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class CrudBean<E, L extends CrudLogic<E>> extends JSFUtil {
+public abstract class CrudBean<E, L extends CrudLogic<E>> extends JsfUtil {
 
     private Status status = Status.BUSCA;
 
