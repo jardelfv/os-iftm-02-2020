@@ -18,5 +18,8 @@ public class TesteBean implements Serializable {
         long tempoEspera = new Date().getTime()+4000;
         while(tempoEspera > new Date().getTime()) { }  
     }
+    public void addTeste(){
+        
+    }
     
 }

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:os="http://xmlns.jcp.org/jsf/composite/oscomponente"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <os:toolbar bean="#{caixaBean}"></os:toolbar>
+
+        <p:spacer></p:spacer>
+        <p:panelGrid columns="2" styleClass="ui-panelgrid-blank" rendered="#{caixaBean.status.name() != 'BUSCA'}">
+            <h:outputLabel value="Tipo Movimento"></h:outputLabel>
+            <p:selectOneRadio value="#{caixaBean.entidade.tipoMovimento}" disabled="#{caixaBean.status.name() == 'EDITA'}">
+            <h:outputLabel value="Descrição"></h:outputLabel>
+                <p:inputText id="descricaoid" value="#{caixaBean.entidade.descricao}"></p:inputText>
+                
+            
+                <p:ajax event="change" update="@form"></p:ajax>
+                <f:selectItem itemValue="entrada" itemLabel="Entrada"></f:selectItem>
+                <f:selectItem itemValue="saida" itemLabel="Saída"></f:selectItem>
+            </p:selectOneRadio>
+
+            <h:outputLabel value="Data Nascimento" ></h:outputLabel>
+            <p:calendar value="#{caixaBean.entidade.dataMovimento}"></p:calendar>
+
+            <h:outputText value="OS"></h:outputText>
+            <p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
+                <p:commandButton type="button" value="Adiocionar OS" onclick="PF('dialogAddEndereco').show()"></p:commandButton>
+                <p:dialog widgetVar="dialogAddEndereco" header="Adicionar OS" modal="true">
+                    <p:panelGrid styleClass="ui-panelgrid-blank" columns="2">
+                        <h:outputLabel value="Digite o ID da OS"></h:outputLabel>
+                        <p:inputText value="#{testeBean.addTeste()}"></p:inputText>
+                        <h:outputLabel value="Usuário"></h:outputLabel>
+                        
+                        
+                        <h:outputLabel></h:outputLabel>
+                        <p:commandButton value="Adicionar" actionListener="#{caixaBean.adicionarOs()}" update="@form"></p:commandButton>
+                        
+                    </p:panelGrid>
+                </p:dialog>
+            </p:panelGrid>
+                        <h:outputLabel value="Valor"></h:outputLabel>
+                        <p:inputText id="valorid" value="#{caixaBean.entidade.valor}"></p:inputText>
+        </p:panelGrid>
+        
+    </h:form>
+</ui:decorate>
+
