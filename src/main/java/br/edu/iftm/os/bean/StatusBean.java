@@ -26,14 +26,6 @@ public class StatusBean extends CrudBean<Status, StatusLogic> {
         super(Status.class);
     }
 
-
-    @Override
-    public void novo() {
-        super.novo(); //To change body of generated methods, choose Tools | Templates.
-        this.statusEntidade = new Status();
-    }
-    
-
     @Override
     public StatusLogic getLogic() {
         return this.logic;
