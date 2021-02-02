@@ -23,10 +23,4 @@ public class CaixaBean extends CrudBean<Caixa, CaixaLogic> {
         super(Caixa.class);
     }
     
-    @Override
-    public CaixaLogic getLogic() {
-        return this.logic;
-    }
-
-    
 }

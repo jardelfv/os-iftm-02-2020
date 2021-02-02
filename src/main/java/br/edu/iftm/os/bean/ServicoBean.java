@@ -23,9 +23,5 @@ public class ServicoBean extends CrudBean<Servico, ServicoLogic> {
         super(Servico.class);
     }
     
-    @Override
-    public ServicoLogic getLogic() {
-        return this.logic;
-    }
 
 }

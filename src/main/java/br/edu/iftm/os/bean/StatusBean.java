@@ -26,8 +26,5 @@ public class StatusBean extends CrudBean<Status, StatusLogic> {
         super(Status.class);
     }
 
-    @Override
-    public StatusLogic getLogic() {
-        return this.logic;
-    }
+
 }
